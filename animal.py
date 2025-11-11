@@ -18,6 +18,7 @@ Other features
 - feeding/cleaning (staff)
 - generate reports such as list of animals by species or the status of enclosures (staff)
 """
+from abc import ABC, abstractmethod
 
 class Animal:
     def __init__(self, name, species, age, diet):
@@ -66,6 +67,19 @@ class Animal:
         self.__dietary_needs = animal_diet
 
     diet = property(get_diet, set_diet)
+
+    """
+    Basic Actions
+    """
+    @abstractmethod
+    def make_sound(self):
+        pass
+    @abstractmethod
+    def eat(self):
+        pass
+    def sleeping(self):
+        return f"{self.__name} is sleeping."
+
 
 animal = Animal("Shaune", "Homo-Sapien", 19, "Omnivore")
 print(animal.name)
