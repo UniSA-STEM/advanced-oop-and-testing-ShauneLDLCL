@@ -20,12 +20,13 @@ Other features
 """
 from abc import ABC, abstractmethod
 
-class Animal:
-    def __init__(self, name, species, age, diet):
+class Animal(ABC):
+    def __init__(self, name, species, age, diet, sound):
         self.__name = name
         self.__species = species
         self.__age = age
         self.__dietary_needs = diet
+        self.__sound = sound
 
 
     def get_name(self):
@@ -66,7 +67,17 @@ class Animal:
             raise ValueError("Diet must be a non-empty string.")
         self.__dietary_needs = animal_diet
 
-    diet = property(get_diet, set_diet)
+    diet = property(get_diet, set_diet)\
+
+    def get_sound(self):
+        return self.__sound
+
+    def set_sound(self, sound):
+        if not isinstance(sound, str) or not sound.strip():
+            raise ValueError("Sound must be a non-empty string.")
+        self.__sound = sound
+
+    sound = property(get_sound, set_sound)
 
     """
     Basic Actions
@@ -77,15 +88,12 @@ class Animal:
     @abstractmethod
     def eat(self):
         pass
+    @abstractmethod
     def sleeping(self):
-        return f"{self.__name} is sleeping."
+        pass
 
 
-animal = Animal("Shaune", "Homo-Sapien", 19, "Omnivore")
-print(animal.name)
-print(animal.species)
-print(animal.age)
-print(animal.diet)
+
 
 
 
