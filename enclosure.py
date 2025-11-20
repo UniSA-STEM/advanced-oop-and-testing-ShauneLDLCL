@@ -6,6 +6,9 @@ ID: 110100110
 Username: bizvy001
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
+from math import isnan
+
+from animal import Animal
 
 class Enclosure:
     CLEANLINESS = {"Clean", "Moderate", "Dirty"}
@@ -74,5 +77,19 @@ class Enclosure:
 
     animal_species = property(get_animals)
 
+    def add_animal(self, animal):
+        if not isinstance(animal, Animal):
+            raise ValueError("Only Animal objects may be added to an enclosure.")
 
+        if not isinstance(animal, self.__compatible_species):
+            raise ValueError(f"This enclosure only accepts {self.__compatible_species.__name__} types")
 
+        if len(self.__animal_species) >= self.__size:
+            raise ValueError("Enclosure is full.")
+
+        self.__animal_species.append(animal)
+
+    def remove_animal(self, animal):
+        if animal not in self.__animal_species:
+            raise ValueError("This animal is not in the enclosure.")
+        self.__animal_species.remove(animal)
