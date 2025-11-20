@@ -93,3 +93,18 @@ class Enclosure:
         if animal not in self.__animal_species:
             raise ValueError("This animal is not in the enclosure.")
         self.__animal_species.remove(animal)
+
+    def enclosure_status(self):
+        animal_names = (", ".join(animal.get_name() for animal in self.__animal_species) if self.__animal_species else "No animals")
+
+        return (
+            f"Enclosure: {self.__name}\n"
+            f"Environment: {self.__environment_type}\n"
+            f"Cleanliness: {self.__cleanliness}\n"
+            f"Animals: {animal_names}\n"
+            f"Capacity: {len(self.__animal_species)}/{self.__size}"
+        )
+
+    def __str__(self):
+        return self.enclosure_status()
+
