@@ -6,7 +6,6 @@ ID: 110100110
 Username: bizvy001
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
-from math import isnan
 
 from animal import Animal
 
@@ -29,7 +28,7 @@ class Enclosure:
             raise ValueError("Enclosure name must be a non-empty string.")
         self.__name = enclosure_name
 
-    name = property(get_name, set_name)
+    enclosure_name = property(get_name, set_name)
 
     def get_environment_type(self):
         return self.__environment_type

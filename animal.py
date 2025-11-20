@@ -67,7 +67,7 @@ class Animal(ABC):
             raise ValueError("Diet must be a non-empty string.")
         self.__dietary_needs = animal_diet
 
-    diet = property(get_diet, set_diet)\
+    diet = property(get_diet, set_diet)
 
     def get_sound(self):
         return self.__sound
