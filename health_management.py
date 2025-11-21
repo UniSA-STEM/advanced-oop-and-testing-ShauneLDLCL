@@ -20,4 +20,12 @@ class HealthIssues:
     description = property(get_description)
     date_reported = property(get_date_reported)
     severity = property(get_severity)
+    treatment_plan = property(get_treatment_plan)
+
+    def __str__(self):
+        return (f"Description: {self.__description}\n"
+                f"Date: {self.__date_reported}\n"
+                f"Severity: {self.__severity}\n"
+                f"Treatment: {self.__treatment_plan}")
+
 
