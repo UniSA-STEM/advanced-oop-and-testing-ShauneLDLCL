@@ -1,4 +1,5 @@
 class HealthIssues:
+    SEVERITY_LEVELS = {"Low", "Medium", "High", "Critical"}
     def __init__(self, description, date_reported, severity, treatment_plan):
         self.__description = description
         self.__date_reported = date_reported
@@ -22,10 +23,9 @@ class HealthIssues:
     severity = property(get_severity)
     treatment_plan = property(get_treatment_plan)
 
-    def __str__(self):
+    def summarise_issue(self):
         return (f"Description: {self.__description}\n"
                 f"Date: {self.__date_reported}\n"
                 f"Severity: {self.__severity}\n"
                 f"Treatment: {self.__treatment_plan}")
-
 
