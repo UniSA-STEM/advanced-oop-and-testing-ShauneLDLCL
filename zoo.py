@@ -9,6 +9,16 @@ class Zoo:
         self.__staff = []
         self.__health_records = health_records
 
+    def add_animal(self, animal):
+        if not isinstance(animal, Animal):
+            raise ValueError("Only Animal instances can be added.")
+        self.__animals.append(animal)
+
+    def get_animals(self):
+        return self.__animals
+
+
+
 
 
 
