@@ -34,3 +34,13 @@ class Staff:
         self.__role = staff_role
 
     staff_role = property(get_role, set_role)
+
+    def feed_animal(self, animal):
+        return f"{self.__name} feeds {animal.name} ({animal.compatible_species}. {animal.eat()}"
+
+    def clean_enclosure(self, enclosure):
+        if self.__role.lower() != "zookeeper":
+            return f"{self.__name} is not authorised to clean enclosure\n(role: {self.__role})."
+
+        enclosure.set_cleanliness("Clean")
+        return f"{self.__name} cleaned the {enclosure.get_name()} enclosure."
