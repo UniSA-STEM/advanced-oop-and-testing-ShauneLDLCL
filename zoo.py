@@ -22,6 +22,18 @@ class Zoo:
             raise ValueError("Only Staff instances can be added.")
         self.__staff.append(staff_member)
 
+    def get_enclosure(self):
+        return self.__enclosures
+
+    def add_enclosure(self, enclosure):
+        if not isinstance(enclosure, Enclosure):
+            raise ValueError("Only Enclosure instances can be added.")
+        self.__enclosures.append(enclosure)
+
+    def assign_animal_to_enclosure(self, animal, enclosure):
+        if self.__health_records.severity_level(animal):
+            raise ValueError(animal.get_name() + " cannot be moved due to health.")
+        enclosure.add_animal(animal)
 
 
 
