@@ -9,6 +9,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 
 from animal import Animal
 from enclosure import Enclosure
+from health_records import HealthRecords
+from health_issues import HealthIssues
 
 class Staff:
     def __init__(self, name, role):
@@ -36,11 +38,33 @@ class Staff:
     staff_role = property(get_role, set_role)
 
     def feed_animal(self, animal):
-        return f"{self.__name} feeds {animal.name} ({animal.compatible_species}. {animal.eat()}"
+        if not isinstance(animal, Animal):
+            raise ValueError("Only valid Animal objects may be fed.")
+        return f"{self.__name} feeds {animal.get_name()}. {animal.eat()}"
 
     def clean_enclosure(self, enclosure):
         if self.__role.lower() != "zookeeper":
-            return f"{self.__name} is not authorised to clean enclosure\n(role: {self.__role})."
+            return f"{self.__name} is not authorised to clean enclosures."
+
+        if not isinstance(enclosure, Enclosure):
+            raise ValueError("Can only clean an Enclosure object.")
 
         enclosure.set_cleanliness("Clean")
         return f"{self.__name} cleaned the {enclosure.get_name()} enclosure."
+
+    def conduct_health_check(self, animal, health_records, issue):
+
+        if not isinstance(animal, Animal):
+            raise ValueError("Health checks can only be recorded for Animal objects.")
+
+        if not isinstance(health_records, HealthRecords):
+            raise ValueError("health_records must be a HealthRecords object.")
+
+        if not isinstance(issue, HealthIssues):
+            raise ValueError("issue must be a HealthIssues object.")
+
+        if self.__role.lower() != "veterinarian":
+            return f"{self.__name} is not authorised to record health issues."
+
+        health_records.add_issue(animal, issue)
+        return f"{self.__name} recorded a health issue for {animal.get_name()}."
