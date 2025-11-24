@@ -35,6 +35,19 @@ class Zoo:
             raise ValueError(animal.get_name() + " cannot be moved due to health.")
         enclosure.add_animal(animal)
 
+    def generate_health_reports(self):
+        reports = []
+        animals_with_issues = self.__health_records.get_animals_with_issues()
+
+        index = 0
+        while index < len(animals_with_issues):
+            animal = animals_with_issues[index]
+            report = self.__health_records.generate_report(animal)
+            reports.append(report)
+            index += 1
+
+        return reports
+
 
 
 
