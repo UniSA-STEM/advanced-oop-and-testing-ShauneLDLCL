@@ -13,7 +13,6 @@ This is my own work as defined by the University's Academic Integrity Policy.
 import pytest
 from zoo import Zoo
 from mammal import Mammal
-from staff import Staff
 from enclosure import Enclosure
 from health_records import HealthRecords
 from health_issues import HealthIssues
